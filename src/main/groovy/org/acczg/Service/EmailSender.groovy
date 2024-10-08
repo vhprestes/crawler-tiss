@@ -48,14 +48,13 @@ class EmailSender {
 
     static List getEmailsCadastrados() {
         List tempList = []
-        int tempIndex = 1
-//        println "Emails cadastrados: "
-
-        def emails = new File("./utils/emails.csv").readLines()
-
+        File emailFile = new File("./utils/emails.csv")
+        if (!emailFile.exists()) {
+            emailFile.createNewFile()
+            println "Nenhum email cadastrado! Cadastre um novo email no menu abaixo:"
+        }
+        def emails = emailFile.readLines()
         emails.each { email ->
-//            println "$tempIndex - $email"
-            tempIndex++
             tempList.add(email)
         }
         return tempList
