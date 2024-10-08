@@ -21,6 +21,7 @@ class EmailSender {
                     addEmail()
                     break
                 case "3":
+                    println "Emails cadastrados:"
                     listarEmails()
                     break
                 case "4":
@@ -39,7 +40,6 @@ class EmailSender {
 
         def console = getEmailsCadastrados()
         int tempIndex = 1
-        println "Emails cadastrados:"
         console.each { email ->
             println "$tempIndex - $email"
             tempIndex++
@@ -50,7 +50,9 @@ class EmailSender {
         List tempList = []
         int tempIndex = 1
 //        println "Emails cadastrados: "
+
         def emails = new File("./utils/emails.csv").readLines()
+
         emails.each { email ->
 //            println "$tempIndex - $email"
             tempIndex++
@@ -89,6 +91,7 @@ class EmailSender {
     def static void removeEmail() {
         def emails = getEmailsCadastrados()
         println "Selecione o código do email que deseja remover:"
+        listarEmails()
         def emailIndex = System.in.newReader().readLine()
         def email = emails.get(emailIndex.toInteger() - 1)
         def newEmails = emails - email
